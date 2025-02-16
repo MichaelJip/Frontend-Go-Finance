@@ -1,7 +1,7 @@
 import { getSession } from "next-auth/react";
-import enviorment from "../config/enviorment";
 import axios from "axios";
 import { Session } from "next-auth";
+import enviorment from "@/config/enviorment";
 
 interface CustomSession extends Session {
   accessToken?: string;
@@ -25,12 +25,12 @@ instance.interceptors.request.use(
     }
     return request;
   },
-  (error) => Promise.reject(error)
+  (error) => Promise.reject(error),
 );
 
 instance.interceptors.response.use(
   (response) => response,
-  (error) => Promise.reject(error)
+  (error) => Promise.reject(error),
 );
 
 export default instance;
