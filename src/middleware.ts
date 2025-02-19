@@ -1,4 +1,5 @@
-import { NextResponse, type NextRequest } from "next/server";
+import { NextResponse } from "next/server";
+import type { NextRequest } from "next/server";
 import { JWTExtended } from "./types/auth";
 import { getToken } from "next-auth/jwt";
 import enviorment from "./config/enviorment";
@@ -47,5 +48,5 @@ export async function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/auth/:path*", "/admin/:path*", '/member/:path*'],
+  matcher: ["/auth/:path*", "/admin/:path*", "/member/:path*"],
 };
