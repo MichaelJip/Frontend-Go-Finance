@@ -3,9 +3,20 @@ import Image from "next/image";
 import Link from "next/link";
 import useRegister from "./useRegister";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { Controller } from "react-hook-form";
+import { cn } from "@/utils/cn";
 
 const Register = () => {
-  const { visible, handleVisiblePassword } = useRegister();
+  const {
+    visible,
+    handleVisiblePassword,
+    control,
+    errors,
+    handleRegister,
+    handleSubmit,
+    isPendingRegister,
+  } = useRegister();
+
   return (
     <div className="flex w-full flex-col items-center justify-center gap-10 lg:flex-row lg:gap-20">
       <div className="flex w-full flex-col items-center justify-center gap-10 lg:w-1/3">
@@ -38,69 +49,131 @@ const Register = () => {
                 Login here
               </Link>
             </p>
-            <form className="flex w-80 flex-col gap-4">
-              <Input
-                label="Fullname"
-                type="text"
-                variant="bordered"
-                placeholder="Bob Willbert"
-                autoComplete="off"
+            {errors.root && (
+              <p className="mb-2 font-medium text-danger">
+                {errors?.root.message}
+              </p>
+            )}
+            <form
+              className={cn(
+                "flex w-80 flex-col",
+                Object.keys(errors).length > 0 ? "gap-2" : "gap-4",
+              )}
+              onSubmit={handleSubmit(handleRegister)}
+            >
+              <Controller
+                name="fullName"
+                control={control}
+                render={({ field }) => (
+                  <Input
+                    {...field}
+                    label="Fullname"
+                    type="text"
+                    variant="bordered"
+                    placeholder="Bob Willbert"
+                    autoComplete="off"
+                    isInvalid={errors.fullName !== undefined}
+                    errorMessage={errors.fullName?.message}
+                  />
+                )}
               />
-              <Input
-                label="Username"
-                type="text"
-                variant="bordered"
-                placeholder="Wilbert"
-                autoComplete="off"
+              <Controller
+                name="username"
+                control={control}
+                render={({ field }) => (
+                  <Input
+                    {...field}
+                    label="Username"
+                    type="text"
+                    variant="bordered"
+                    placeholder="Bob Willbert"
+                    autoComplete="off"
+                    isInvalid={errors.username !== undefined}
+                    errorMessage={errors.username?.message}
+                  />
+                )}
               />
-              <Input
-                label="Email"
-                type="email"
-                variant="bordered"
-                placeholder="Wilber@test.com"
-                autoComplete="off"
+              <Controller
+                name="email"
+                control={control}
+                render={({ field }) => (
+                  <Input
+                    {...field}
+                    label="Email"
+                    type="email"
+                    variant="bordered"
+                    placeholder="Wilber@test.com"
+                    autoComplete="off"
+                    isInvalid={errors.email !== undefined}
+                    errorMessage={errors.email?.message}
+                  />
+                )}
               />
-              <Input
-                label="Password"
-                type={visible.password ? "text" : "password"}
-                variant="bordered"
-                autoComplete="off"
-                endContent={
-                  <button
-                    aria-label="toggle password visibility"
-                    className="focus:outline-none"
-                    type="button"
-                    onClick={() => handleVisiblePassword("password")}
-                  >
-                    {visible.password ? (
-                      <FaEye className="pointer-events-none text-xl text-default-400" />
-                    ) : (
-                      <FaEyeSlash className="pointer-events-none text-xl text-default-400" />
-                    )}
-                  </button>
-                }
+              <Controller
+                name="password"
+                control={control}
+                render={({ field }) => (
+                  <Input
+                    {...field}
+                    label="Password"
+                    type={visible.password ? "text" : "password"}
+                    variant="bordered"
+                    autoComplete="off"
+                    endContent={
+                      <button
+                        aria-label="toggle password visibility"
+                        className="focus:outline-none"
+                        type="button"
+                        onClick={() => handleVisiblePassword("password")}
+                      >
+                        {visible.password ? (
+                          <FaEye className="pointer-events-none text-xl text-default-400" />
+                        ) : (
+                          <FaEyeSlash className="pointer-events-none text-xl text-default-400" />
+                        )}
+                      </button>
+                    }
+                    isInvalid={errors.password !== undefined}
+                    errorMessage={errors.password?.message}
+                  />
+                )}
               />
-              <Input
-                label="Confirm Password"
-                type={visible.confirmPassword ? "text" : "password"}
-                variant="bordered"
-                autoComplete="off"
-                endContent={
-                  <button
-                    aria-label="toggle password visibility"
-                    className="focus:outline-none"
-                    type="button"
-                    onClick={() => handleVisiblePassword("confirmPassword")}
-                  >
-                    {visible.confirmPassword ? (
-                      <FaEye className="pointer-events-none text-xl text-default-400" />
-                    ) : (
-                      <FaEyeSlash className="pointer-events-none text-xl text-default-400" />
-                    )}
-                  </button>
-                }
+              <Controller
+                name="confirmPassword"
+                control={control}
+                render={({ field }) => (
+                  <Input
+                    {...field}
+                    label="Confirm Password"
+                    type={visible.confirmPassword ? "text" : "password"}
+                    variant="bordered"
+                    autoComplete="off"
+                    endContent={
+                      <button
+                        aria-label="toggle password visibility"
+                        className="focus:outline-none"
+                        type="button"
+                        onClick={() => handleVisiblePassword("confirmPassword")}
+                      >
+                        {visible.confirmPassword ? (
+                          <FaEye className="pointer-events-none text-xl text-default-400" />
+                        ) : (
+                          <FaEyeSlash className="pointer-events-none text-xl text-default-400" />
+                        )}
+                      </button>
+                    }
+                    isInvalid={errors.confirmPassword !== undefined}
+                    errorMessage={errors.confirmPassword?.message}
+                  />
+                )}
               />
-              <Button color="danger" size="lg" type="submit">
+
+              <Button
+                isLoading={isPendingRegister}
+                color="danger"
+                size="lg"
+                type="submit"
+              >
                 Register
               </Button>
             </form>
