@@ -36,8 +36,8 @@ const DashboardLayout = (props: PropsTypes) => {
               className="lg:hidden"
             ></NavbarMenuToggle>
           </Navbar>
-          {children}
           <p className="mb-4 text-small">{description}</p>
+          {children}
         </div>
       </div>
     </>
