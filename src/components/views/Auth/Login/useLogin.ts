@@ -1,4 +1,5 @@
 import { ILogin } from "@/types/auth";
+import { addToast } from "@heroui/toast";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useMutation } from "@tanstack/react-query";
 import { signIn } from "next-auth/react";
@@ -29,7 +30,6 @@ const useLogin = () => {
     handleSubmit,
     formState: { errors },
     reset,
-    setError,
   } = useForm({
     resolver: yupResolver(loginSchema),
   });
@@ -48,11 +48,18 @@ const useLogin = () => {
   const { mutate: mutateLogin, isPending: isPendingLogin } = useMutation({
     mutationFn: loginService,
     onError(error) {
-      setError("root", {
-        message: error.message,
+      addToast({
+        title: "Failed",
+        description: error.message,
+        color: "danger",
       });
     },
     onSuccess: () => {
+      addToast({
+        title: "Success",
+        description: "Success Login",
+        color: "success",
+      });
       router.push(callbackUrl);
       reset();
     },
