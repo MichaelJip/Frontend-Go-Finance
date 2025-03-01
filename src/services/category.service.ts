@@ -15,6 +15,9 @@ const categoryServices = {
   removeCategory: (id: string) => {
     return instance.delete(`${endpoint.CATEGORY}/${id}`);
   },
+  updateCategory: (id: string, payload: ICategory) => {
+    return instance.put(`${endpoint.CATEGORY}/${id}`, payload);
+  },
 };
 
 export default categoryServices;
