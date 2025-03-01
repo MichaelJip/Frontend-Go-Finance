@@ -7,8 +7,11 @@ const categoryServices = {
     return instance.get(`${endpoint.CATEGORY}?${params}`);
   },
   addCategory: (payload: ICategory) => {
-    return instance.post(`${endpoint.CATEGORY}`, payload)
-  }
+    return instance.post(`${endpoint.CATEGORY}`, payload);
+  },
+  removeCategory: (id: string) => {
+    return instance.delete(`${endpoint.CATEGORY}/${id}`);
+  },
 };
 
 export default categoryServices;

@@ -13,24 +13,29 @@ import { CiMenuKebab } from "react-icons/ci";
 import { COLUMN_LIST_CATEGORY } from "./Category.constants";
 import useCategory from "./useCategory";
 import AddCategoryModal from "./AddCategoryModal";
+import DeleteCategoryModal from "./DeleteCategoryModal";
+import Image from "next/image";
 
 const Category = () => {
   const { push, isReady, query } = useRouter();
   const {
-    setUrl,
     dataCategory,
     isLoadingCategory,
     currentPage,
     currentLimit,
     isRefetchingCategory,
+    selectedId,
     handleChangeLimit,
+    setUrl,
     handleChangePage,
     handleSearch,
-    handleClearSearch,
     refetchCategory,
+    handleClearSearch,
+    setSelectedId,
   } = useCategory();
 
   const addCategoryModal = useDisclosure();
+  const deleteCategoryModal = useDisclosure();
 
   useEffect(() => {
     if (isReady) {
@@ -42,10 +47,10 @@ const Category = () => {
     (category: Record<string, unknown>, columnKey: Key) => {
       const cellValue = category[columnKey as keyof typeof category];
       switch (columnKey) {
-        // case "icon":
-        //   return (
-        //     <Image src={`${cellValue}`} alt="icon" width={100} height={200} />
-        //   );
+        case "icon":
+          return (
+            <Image src={`${cellValue}`} alt="icon" width={100} height={200} />
+          );
         case "actions":
           return (
             <Dropdown>
@@ -64,6 +69,10 @@ const Category = () => {
                 <DropdownItem
                   key="delete-category-button"
                   className="text-danger-500"
+                  onPress={() => {
+                    setSelectedId(`${category._id}`);
+                    deleteCategoryModal.onOpen();
+                  }}
                 >
                   Delete
                 </DropdownItem>
@@ -99,6 +108,12 @@ const Category = () => {
       )}
       <AddCategoryModal
         {...addCategoryModal}
+        refetchCategory={refetchCategory}
+      />
+      <DeleteCategoryModal
+        {...deleteCategoryModal}
+        selectedId={selectedId}
+        setSelectedId={setSelectedId}
         refetchCategory={refetchCategory}
       />
     </section>
