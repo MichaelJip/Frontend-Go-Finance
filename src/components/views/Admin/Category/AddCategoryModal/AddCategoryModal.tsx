@@ -96,6 +96,9 @@ const AddCategoryModal = (props: PropsTypes) => {
                 render={({ field: { onChange, ...field } }) => (
                   <InputFile
                     {...field}
+                    label={
+                      <p className="mb-2 text-sm text-default-700">Add Icon</p>
+                    }
                     onDelete={() => handleRemoveIcon(onChange)}
                     onUpload={(files) => handleUploadIcon(files, onChange)}
                     isUploading={isPendingUploadFile}

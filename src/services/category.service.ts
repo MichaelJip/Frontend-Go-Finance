@@ -6,6 +6,9 @@ const categoryServices = {
   getCategories: (params?: string) => {
     return instance.get(`${endpoint.CATEGORY}?${params}`);
   },
+  getCategoryById: (id: string) => {
+    return instance.get(`${endpoint.CATEGORY}/${id}`);
+  },
   addCategory: (payload: ICategory) => {
     return instance.post(`${endpoint.CATEGORY}`, payload);
   },
