@@ -1,5 +1,6 @@
-import { useEffect } from "react";
-import useAddEventModal from "./useAddEventModal";
+import InputFile from "@/components/ui/InputFile";
+import { ICategory } from "@/types/category";
+import { IRegion } from "@/types/region";
 import {
   Autocomplete,
   AutocompleteItem,
@@ -15,10 +16,10 @@ import {
   SelectItem,
   Textarea,
 } from "@heroui/react";
+import { useEffect } from "react";
 import { Controller } from "react-hook-form";
-import InputFile from "@/components/ui/InputFile";
-import { ICategory } from "@/types/category";
-import { IRegion } from "@/types/region";
+import useAddEventModal from "./useAddEventModal";
+import { getLocalTimeZone, now } from "@internationalized/date";
 
 interface PropsTypes {
   isOpen: boolean;
@@ -34,6 +35,8 @@ const AddEventModal = (props: PropsTypes) => {
     errors,
     isPendingAddEvent,
     isSuccessAddEvent,
+    handleAddEvent,
+    handleSubmitForm,
 
     //Handle Image
     banner,
@@ -64,8 +67,6 @@ const AddEventModal = (props: PropsTypes) => {
   const disabledSubmit =
     isPendingAddEvent || isPendingUploadFile || isPendingRemoveFile;
 
-  console.log(dataCategory?.data.data, "chekc dat");
-
   return (
     <Modal
       onOpenChange={onOpenChange}
@@ -75,8 +76,8 @@ const AddEventModal = (props: PropsTypes) => {
       onClose={() => handleOnClose(onClose)}
     >
       <form
-        onSubmit={() => {}}
-        // onSubmit={handleSubmitForm(handleAddEvent)}
+        // onSubmit={() => {}}
+        onSubmit={handleSubmitForm(handleAddEvent)}
       >
         <ModalContent className="m-4">
           <ModalHeader>Add Event</ModalHeader>
@@ -144,6 +145,7 @@ const AddEventModal = (props: PropsTypes) => {
                     variant="bordered"
                     hideTimeZone
                     showMonthAndYearPickers
+                    defaultValue={now(getLocalTimeZone())}
                     isInvalid={errors.startDate !== undefined}
                     errorMessage={errors.startDate?.message}
                   />
@@ -157,6 +159,7 @@ const AddEventModal = (props: PropsTypes) => {
                     {...field}
                     label="End Date"
                     variant="bordered"
+                    defaultValue={now(getLocalTimeZone())}
                     hideTimeZone
                     showMonthAndYearPickers
                     isInvalid={errors.endDate !== undefined}
@@ -176,12 +179,8 @@ const AddEventModal = (props: PropsTypes) => {
                     errorMessage={errors.isPublish?.message}
                     disallowEmptySelection
                   >
-                    <SelectItem key="true" value={"true"}>
-                      Publish
-                    </SelectItem>
-                    <SelectItem key="false" value={"false"}>
-                      Draft
-                    </SelectItem>
+                    <SelectItem key="true">Publish</SelectItem>
+                    <SelectItem key="false">Draft</SelectItem>
                   </Select>
                 )}
               />
@@ -197,12 +196,25 @@ const AddEventModal = (props: PropsTypes) => {
                     errorMessage={errors.isFeatured?.message}
                     disallowEmptySelection
                   >
-                    <SelectItem key="true" value={"true"}>
-                      Yes
-                    </SelectItem>
-                    <SelectItem key="false" value={"false"}>
-                      No
-                    </SelectItem>
+                    <SelectItem key="true">Yes</SelectItem>
+                    <SelectItem key="false">No</SelectItem>
+                  </Select>
+                )}
+              />
+              <Controller
+                name="isOnline"
+                control={control}
+                render={({ field }) => (
+                  <Select
+                    {...field}
+                    label="Online / Offline"
+                    variant="bordered"
+                    isInvalid={errors.isOnline !== undefined}
+                    errorMessage={errors.isOnline?.message}
+                    disallowEmptySelection
+                  >
+                    <SelectItem key="true">Online</SelectItem>
+                    <SelectItem key="false">Offline</SelectItem>
                   </Select>
                 )}
               />

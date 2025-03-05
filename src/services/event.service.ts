@@ -9,6 +9,9 @@ const eventServices = {
   addEvent: (payload: IEvent) => {
     return instance.post(`${endpoint.EVENT}`, payload);
   },
+  removeEvent: (id: string) => {
+    return instance.delete(`${endpoint.EVENT}/${id}`);
+  },
 };
 
 export default eventServices;

@@ -1,20 +1,28 @@
+import { DateValue } from "@heroui/react";
+
 interface IEvent {
-  name?: string;
+  name: string;
   slug: string;
-  banner?: string | FileList;
-  category?: string;
-  description?: string;
-  startDate?: string;
-  endDate?: string;
+  banner: string | FileList;
+  category: string;
+  description: string;
+  startDate: string;
+  endDate: string;
   location?: {
     region: string;
-    coordinates: {
-      x: number;
-      y: number;
-    };
+    coordinates: number[];
   };
-  isFeatured?: boolean;
-  isPublish?: boolean;
+  isFeatured: boolean | string;
+  isPublish: boolean | string;
+  isOnline: boolean | string;
 }
 
-export { IEvent };
+interface IEventForm extends IEvent {
+  region: string;
+  startDate: DateValue;
+  endDate: DateValue;
+  latitude: string;
+  longitude: string;
+}
+
+export { IEvent, IEventForm };

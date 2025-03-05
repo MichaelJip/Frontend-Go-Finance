@@ -8,6 +8,7 @@ import { COLUMN_LIST_EVENT } from "./Event.constants";
 import useEvent from "./useEvent";
 import { Chip, useDisclosure } from "@heroui/react";
 import AddEventModal from "./AddEventModal";
+import DeleteEventModal from "./DeleteEventModal";
 
 const Event = () => {
   const { push, query, isReady } = useRouter();
@@ -15,11 +16,13 @@ const Event = () => {
     dataEvent,
     isLoadingEvent,
     isRefetchingEvent,
+    selectedId,
     refetchEvent,
     setSelectedId,
   } = useEvent();
 
   const addEventModal = useDisclosure();
+  const deleteEventModal = useDisclosure();
 
   const { setUrl } = useChangeUrl();
 
@@ -50,6 +53,7 @@ const Event = () => {
               onPressButtonDetail={() => push(`/admin/event/${event._id}`)}
               onPressButtonDelete={() => {
                 setSelectedId(`${event._id}`);
+                deleteEventModal.onOpen();
               }}
             />
           );
@@ -85,6 +89,12 @@ const Event = () => {
         />
       )}
       <AddEventModal {...addEventModal} refetchEvent={refetchEvent} />
+      <DeleteEventModal
+        {...deleteEventModal}
+        selectedId={selectedId}
+        setSelectedId={setSelectedId}
+        refetchEvent={refetchEvent}
+      />
     </section>
   );
 };

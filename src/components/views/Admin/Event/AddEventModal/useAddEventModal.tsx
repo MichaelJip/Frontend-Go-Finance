@@ -4,10 +4,12 @@ import useMediaHandling from "@/hooks/useMediaHandling";
 import categoryServices from "@/services/category.service";
 import eventServices from "@/services/event.service";
 import regionServices from "@/services/region.service";
-import { IEvent } from "@/types/event";
+import { IEvent, IEventForm } from "@/types/event";
+import { toDateStandard } from "@/utils/date";
 import { DateValue } from "@heroui/react";
 import { addToast } from "@heroui/toast";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { getLocalTimeZone, now } from "@internationalized/date";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
@@ -20,13 +22,13 @@ const schema = yup.object().shape({
   category: yup.string().required("Please choose category"),
   startDate: yup.mixed<DateValue>().required("Please select start date"),
   endDate: yup.mixed<DateValue>().required("Please select end date"),
-  isPublish: yup.string().required("Please select status"),
-  isFeatured: yup.string().required("Please select featured"),
-  isOnline: yup.string().required("Please select online or offline"),
+  banner: yup.mixed<FileList | string>().required("Please input banner"),
   region: yup.string().required("Please select region"),
   latitude: yup.string().required("Please input latitude coordinate"),
   longitude: yup.string().required("Please input longitude coordinate"),
-  banner: yup.mixed<FileList | string>().required("Please input banner"),
+  isPublish: yup.string().required("Please select status"),
+  isFeatured: yup.string().required("Please select featured"),
+  isOnline: yup.string().required("Please select online or offline"),
 });
 
 const useAddEventModal = () => {
@@ -53,6 +55,9 @@ const useAddEventModal = () => {
 
   const banner = watch("banner");
   const fileUrl = getValues("banner");
+
+  setValue("startDate", now(getLocalTimeZone()));
+  setValue("endDate", now(getLocalTimeZone()));
 
   const handleUploadBanner = (
     files: FileList,
@@ -124,7 +129,22 @@ const useAddEventModal = () => {
     },
   });
 
-  const handleAddEvent = (data: IEvent) => mutateAddEvent(data);
+  const handleAddEvent = (data: IEventForm) => {
+    const payload = {
+      ...data,
+      isFeatured: data.isFeatured === "true" ? true : false,
+      isPublish: data.isPublish === "true" ? true : false,
+      isOnline: data.isOnline === "true" ? true : false,
+      startDate: toDateStandard(data.startDate),
+      endDate: toDateStandard(data.endDate),
+      location: {
+        region: data.region,
+        coordinates: [Number(data.latitude), Number(data.longitude)],
+      },
+      banner: data.banner,
+    };
+    mutateAddEvent(payload);
+  };
 
   return {
     control,
