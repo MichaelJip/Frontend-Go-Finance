@@ -7,7 +7,7 @@ import { CiSaveUp2, CiTrash } from "react-icons/ci";
 interface PropsTypes {
   classname?: string;
   name: string;
-  label: ReactNode;
+  label?: ReactNode;
   errorMessage?: string;
   preview?: string;
   isDropable?: boolean;

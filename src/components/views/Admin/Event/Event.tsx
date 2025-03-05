@@ -6,7 +6,8 @@ import { useRouter } from "next/router";
 import { Key, ReactNode, useCallback, useEffect } from "react";
 import { COLUMN_LIST_EVENT } from "./Event.constants";
 import useEvent from "./useEvent";
-import { Chip } from "@heroui/react";
+import { Chip, useDisclosure } from "@heroui/react";
+import AddEventModal from "./AddEventModal";
 
 const Event = () => {
   const { push, query, isReady } = useRouter();
@@ -14,10 +15,11 @@ const Event = () => {
     dataEvent,
     isLoadingEvent,
     isRefetchingEvent,
-    selectedId,
     refetchEvent,
     setSelectedId,
   } = useEvent();
+
+  const addEventModal = useDisclosure();
 
   const { setUrl } = useChangeUrl();
 
@@ -79,8 +81,10 @@ const Event = () => {
           data={dataEvent?.data || []}
           buttonTopContentLabel="Create Event"
           isLoading={isLoadingEvent || isRefetchingEvent}
+          onClickButtonTopContent={addEventModal.onOpen}
         />
       )}
+      <AddEventModal {...addEventModal} refetchEvent={refetchEvent} />
     </section>
   );
 };
