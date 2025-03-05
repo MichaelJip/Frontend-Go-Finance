@@ -134,7 +134,7 @@ const useAddEventModal = () => {
       startDate: toDateStandard(data.startDate as DateValue),
       endDate: toDateStandard(data.endDate as DateValue),
       location: {
-        region: data.region,
+        region: `${data.region}`,
         coordinates: [Number(data.latitude), Number(data.longitude)],
       },
       banner: data.banner,
