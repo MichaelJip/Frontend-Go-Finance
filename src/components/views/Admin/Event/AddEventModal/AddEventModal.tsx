@@ -37,6 +37,7 @@ const AddEventModal = (props: PropsTypes) => {
     isSuccessAddEvent,
     handleAddEvent,
     handleSubmitForm,
+    setValue,
 
     //Handle Image
     banner,
@@ -63,6 +64,11 @@ const AddEventModal = (props: PropsTypes) => {
       refetchEvent();
     }
   }, [isSuccessAddEvent, onClose, refetchEvent]);
+
+  useEffect(() => {
+    setValue("startDate", now(getLocalTimeZone()));
+    setValue("endDate", now(getLocalTimeZone()));
+  }, [onOpenChange]);
 
   const disabledSubmit =
     isPendingAddEvent || isPendingUploadFile || isPendingRemoveFile;
@@ -145,7 +151,6 @@ const AddEventModal = (props: PropsTypes) => {
                     variant="bordered"
                     hideTimeZone
                     showMonthAndYearPickers
-                    defaultValue={now(getLocalTimeZone())}
                     isInvalid={errors.startDate !== undefined}
                     errorMessage={errors.startDate?.message}
                   />
@@ -159,7 +164,6 @@ const AddEventModal = (props: PropsTypes) => {
                     {...field}
                     label="End Date"
                     variant="bordered"
-                    defaultValue={now(getLocalTimeZone())}
                     hideTimeZone
                     showMonthAndYearPickers
                     isInvalid={errors.endDate !== undefined}

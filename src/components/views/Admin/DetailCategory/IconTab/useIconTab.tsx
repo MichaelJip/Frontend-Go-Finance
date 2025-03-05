@@ -11,10 +11,11 @@ const schemaUpdateIcon = yup.object().shape({
 
 const useIconTab = () => {
   const {
-    mutateUploadFile,
     isPendingUploadFile,
-    mutateRemoveFile,
     isPendingRemoveFile,
+
+    handleRemoveFile,
+    handleUploadFile,
   } = useMediaHandling();
 
   const {
@@ -30,29 +31,23 @@ const useIconTab = () => {
   });
 
   const icon = watchUpdateIcon("icon");
+  const fileUrl = getValuesUpdateIcon("icon");
 
   const handleUploadIcon = (
     files: FileList,
     onChange: (files: FileList | undefined) => void,
   ) => {
-    if (files.length !== 0) {
-      onChange(files);
-      mutateUploadFile({
-        file: files[0],
-        callback: (fileUrl: string) => {
-          setValueUpdateIcon("icon", fileUrl);
-        },
-      });
-    }
+    handleUploadFile(files, onChange, (fileUrl: string | undefined) => {
+      if (fileUrl) {
+        setValueUpdateIcon("icon", fileUrl);
+      }
+    });
   };
 
   const handleRemoveIcon = (
     onChange: (files: FileList | undefined) => void,
   ) => {
-    const fileUrl = getValuesUpdateIcon("icon");
-    if (typeof fileUrl === "string") {
-      mutateRemoveFile({ fileUrl, callback: () => onChange(undefined) });
-    }
+    handleRemoveFile(fileUrl, () => onChange(undefined));
   };
 
   return {

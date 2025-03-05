@@ -89,9 +89,7 @@ const DataTable = (props: PropsTypes) => {
           disallowEmptySelection
         >
           {LIMIT_LISTS.map((item) => (
-            <SelectItem key={item.value} value={item.value}>
-              {item.label}
-            </SelectItem>
+            <SelectItem key={item.value}>{item.label}</SelectItem>
           ))}
         </Select>
         {totalPages > 1 && (
