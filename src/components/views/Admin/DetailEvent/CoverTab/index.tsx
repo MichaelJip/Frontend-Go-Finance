@@ -1,3 +1,3 @@
-import BannerTab from "./bannerTab";
+import CoverTab from "./CoverTab";
 
-export default BannerTab;
+export default CoverTab;
