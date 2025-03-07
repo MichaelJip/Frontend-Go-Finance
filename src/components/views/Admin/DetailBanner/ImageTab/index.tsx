@@ -1,3 +1,3 @@
-import CoverTab from "./CoverTab";
+import ImageTab from "./ImageTab";
 
-export default CoverTab;
+export default ImageTab;
