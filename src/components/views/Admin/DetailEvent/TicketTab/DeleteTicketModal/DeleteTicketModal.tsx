@@ -1,5 +1,5 @@
 import { Dispatch, SetStateAction, useEffect } from "react";
-import useDeleteEventModel from "./useDeleteEventModal";
+import useDeleteTicketModal from "./useDeleteTicketModal";
 import {
   Button,
   Modal,
@@ -15,28 +15,28 @@ interface PropTypes {
   setSelectedId: Dispatch<SetStateAction<string>>;
   onClose: () => void;
   onOpenChange: () => void;
-  refetchEvent: () => void;
+  refetchTicket: () => void;
 }
 
-const DeleteEventModal = (props: PropTypes) => {
+const DeleteTicketModal = (props: PropTypes) => {
   const {
     isOpen,
     onClose,
     onOpenChange,
-    refetchEvent,
+    refetchTicket,
     selectedId,
     setSelectedId,
   } = props;
 
-  const { mutateRemoveEvent, isPendingRemoveEvent, isSuccessRemoveEvent } =
-    useDeleteEventModel();
+  const { mutateRemoveTicket, isPendingRemoveTicket, isSuccessRemoveTicket } =
+    useDeleteTicketModal();
 
   useEffect(() => {
-    if (isSuccessRemoveEvent) {
+    if (isSuccessRemoveTicket) {
       onClose();
-      refetchEvent();
+      refetchTicket();
     }
-  }, [isSuccessRemoveEvent, refetchEvent, onClose]);
+  }, [isSuccessRemoveTicket, refetchTicket, onClose]);
 
   return (
     <Modal
@@ -46,10 +46,10 @@ const DeleteEventModal = (props: PropTypes) => {
       scrollBehavior="inside"
     >
       <ModalContent className="m-4">
-        <ModalHeader>Delete Event</ModalHeader>
+        <ModalHeader>Delete Ticket</ModalHeader>
         <ModalBody>
           <p className="text-medium">
-            Are you sure you want to delete this event
+            Are you sure you want to delete this ticket
           </p>
         </ModalBody>
         <ModalFooter>
@@ -60,16 +60,16 @@ const DeleteEventModal = (props: PropTypes) => {
               onClose();
               setSelectedId("");
             }}
-            disabled={isPendingRemoveEvent}
+            disabled={isPendingRemoveTicket || isSuccessRemoveTicket}
           >
             Cancel
           </Button>
           <Button
             color="danger"
             type="submit"
-            onPress={() => mutateRemoveEvent(selectedId)}
-            disabled={isPendingRemoveEvent}
-            isLoading={isPendingRemoveEvent}
+            onPress={() => mutateRemoveTicket(selectedId)}
+            disabled={isPendingRemoveTicket || isSuccessRemoveTicket}
+            isLoading={isPendingRemoveTicket || isSuccessRemoveTicket}
           >
             Delete Event
           </Button>
@@ -79,4 +79,4 @@ const DeleteEventModal = (props: PropTypes) => {
   );
 };
 
-export default DeleteEventModal;
+export default DeleteTicketModal;

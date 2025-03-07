@@ -10,9 +10,14 @@ import { useRouter } from "next/router";
 const useDetailEvent = () => {
   const { query, isReady } = useRouter();
 
+  const getEventById = async () => {
+    const { data } = await eventServices.getEventById(`${query.id}`);
+    return data.data;
+  };
+
   const { data: dataEvent, refetch: refetchEvent } = useQuery({
     queryKey: ["Event"],
-    queryFn: () => getEventById(`${query.id}`),
+    queryFn: getEventById,
     enabled: isReady,
   });
 
@@ -67,11 +72,6 @@ const useDetailEvent = () => {
       banner: data.banner,
     };
     mutateUpdateEvent(payload);
-  };
-
-  const getEventById = async (id: string) => {
-    const { data } = await eventServices.getEventById(id);
-    return data.data;
   };
 
   const { data: dataDefaultRegion, isPending: isPendingDefaultRegion } =

@@ -3,6 +3,7 @@ import useDetailEvent from "./useDetailEvent";
 import CoverTab from "./CoverTab/CoverTab";
 import InfoTab from "./InfoTab";
 import LocationTab from "./LocationTab";
+import TicketTab from "./TicketTab";
 
 const DetailEvent = () => {
   const {
@@ -45,6 +46,9 @@ const DetailEvent = () => {
           isPendingSuccessEvent={isSuccessUpdateEvent}
           isPendingUpdateEvent={isPendingUpdateEvent}
         />
+      </Tab>
+      <Tab key={"ticket"} title="Ticket">
+        <TicketTab />
       </Tab>
     </Tabs>
   );

@@ -68,7 +68,7 @@ const AddEventModal = (props: PropsTypes) => {
   useEffect(() => {
     setValue("startDate", now(getLocalTimeZone()));
     setValue("endDate", now(getLocalTimeZone()));
-  }, [onOpenChange]);
+  }, [onOpenChange, setValue]);
 
   const disabledSubmit =
     isPendingAddEvent || isPendingUploadFile || isPendingRemoveFile;
@@ -81,9 +81,7 @@ const AddEventModal = (props: PropsTypes) => {
       scrollBehavior="inside"
       onClose={() => handleOnClose(onClose)}
     >
-      <form
-        onSubmit={handleSubmitForm(handleAddEvent)}
-      >
+      <form onSubmit={handleSubmitForm(handleAddEvent)}>
         <ModalContent className="m-4">
           <ModalHeader>Add Event</ModalHeader>
           <ModalBody>
