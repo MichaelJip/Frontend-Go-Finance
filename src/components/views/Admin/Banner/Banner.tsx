@@ -41,10 +41,10 @@ const Banner = () => {
         case "image":
           return (
             <Image
-              className="aspect-video w-36 rounded-lg object-cover"
               src={`${cellValue}`}
-              alt="icon"
-              width={200}
+              className="rounded-lg"
+              alt="image"
+              width={300}
               height={100}
             />
           );

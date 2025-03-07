@@ -23,7 +23,6 @@ const useDetailEvent = () => {
 
   const updateEvent = async (payload: IEvent) => {
     const { data } = await eventServices.updateEvent(`${query.id}`, payload);
-
     return data.data;
   };
 
