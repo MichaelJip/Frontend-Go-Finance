@@ -25,7 +25,6 @@ const DropdownAction = (props: PropTypes) => {
       <DropdownMenu>
         <DropdownItem
           key={`detail-${keyText}-button`}
-          //   onPress={() => push(`/admin/event/${event._id}`)}
           onPress={onPressButtonDetail}
         >
           Detail

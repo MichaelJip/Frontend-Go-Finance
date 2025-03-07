@@ -11,6 +11,7 @@ interface IEvent {
   endDate?: string | DateValue;
   location?: {
     region: string;
+    address: string;
     coordinates: number[];
   };
   isFeatured?: boolean | string;
@@ -20,6 +21,9 @@ interface IEvent {
 
 interface IEventForm extends IEvent {
   region?: string;
+  address?: string;
+  startDate?: DateValue;
+  endDate?: DateValue;
   latitude?: string;
   longitude?: string;
 }

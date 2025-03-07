@@ -11,6 +11,7 @@ import {
   Select,
   SelectItem,
   Skeleton,
+  Textarea,
 } from "@heroui/react";
 import { useEffect } from "react";
 import { Controller } from "react-hook-form";
@@ -58,6 +59,7 @@ const LocationTab = (props: PropTypes) => {
         `${dataEvent?.location?.coordinates[1]}`,
       );
       setValueUpdateLocation("region", `${dataEvent?.location?.region}`);
+      setValueUpdateLocation("address", `${dataEvent?.location?.address}`);
     }
   }, [dataEvent, setValueUpdateLocation]);
 
@@ -111,7 +113,6 @@ const LocationTab = (props: PropTypes) => {
               render={({ field }) => (
                 <Input
                   {...field}
-                  autoFocus
                   label="Latitude"
                   variant="bordered"
                   labelPlacement="outside"
@@ -132,7 +133,6 @@ const LocationTab = (props: PropTypes) => {
               render={({ field }) => (
                 <Input
                   {...field}
-                  autoFocus
                   label="Longitude"
                   variant="bordered"
                   labelPlacement="outside"
@@ -178,6 +178,25 @@ const LocationTab = (props: PropTypes) => {
                 )}
               />
             )}
+          </Skeleton>
+          <Skeleton
+            isLoaded={!!dataEvent.location?.address}
+            className="rounded-lg"
+          >
+            <Controller
+              name="address"
+              control={controlUpdateLocation}
+              render={({ field }) => (
+                <Textarea
+                  {...field}
+                  label="Address"
+                  variant="bordered"
+                  labelPlacement="outside"
+                  isInvalid={errorUpdateLocation.address !== undefined}
+                  errorMessage={errorUpdateLocation.address?.message}
+                />
+              )}
+            />
           </Skeleton>
           <Button
             color="danger"

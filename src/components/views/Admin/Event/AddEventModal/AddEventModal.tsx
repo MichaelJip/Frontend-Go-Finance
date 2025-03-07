@@ -82,7 +82,6 @@ const AddEventModal = (props: PropsTypes) => {
       onClose={() => handleOnClose(onClose)}
     >
       <form
-        // onSubmit={() => {}}
         onSubmit={handleSubmitForm(handleAddEvent)}
       >
         <ModalContent className="m-4">
@@ -290,6 +289,19 @@ const AddEventModal = (props: PropsTypes) => {
                     type="text"
                     isInvalid={errors.longitude !== undefined}
                     errorMessage={errors.longitude?.message}
+                  />
+                )}
+              />
+              <Controller
+                name="address"
+                control={control}
+                render={({ field }) => (
+                  <Textarea
+                    {...field}
+                    label="Address"
+                    variant="bordered"
+                    isInvalid={errors.address !== undefined}
+                    errorMessage={errors.address?.message}
                   />
                 )}
               />

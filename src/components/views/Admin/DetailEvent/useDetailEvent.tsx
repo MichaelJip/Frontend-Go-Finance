@@ -50,8 +50,6 @@ const useDetailEvent = () => {
   const handleUpdateInfo = (data: IEventForm) => {
     const payload = {
       ...data,
-      isFeatured: data.isFeatured === "true" ? true : false,
-      isPublish: data.isPublish === "true" ? true : false,
       startDate: toDateStandard(data.startDate as DateValue),
       endDate: toDateStandard(data.endDate as DateValue),
     };
@@ -63,6 +61,7 @@ const useDetailEvent = () => {
       isOnline: data.isOnline === "true" ? true : false,
       location: {
         region: `${data.region}`,
+        address: `${data.address}`,
         coordinates: [Number(data.latitude), Number(data.longitude)],
       },
       banner: data.banner,
