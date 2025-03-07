@@ -8,11 +8,12 @@ import {
   ModalFooter,
   ModalHeader,
 } from "@heroui/react";
+import { ITicket } from "@/types/ticket";
 
 interface PropTypes {
   isOpen: boolean;
-  selectedId: string;
-  setSelectedId: Dispatch<SetStateAction<string>>;
+  selectedDataTicket: ITicket | null;
+  setSelectedDataTicket: Dispatch<SetStateAction<ITicket | null>>;
   onClose: () => void;
   onOpenChange: () => void;
   refetchTicket: () => void;
@@ -24,8 +25,8 @@ const DeleteTicketModal = (props: PropTypes) => {
     onClose,
     onOpenChange,
     refetchTicket,
-    selectedId,
-    setSelectedId,
+    selectedDataTicket,
+    setSelectedDataTicket,
   } = props;
 
   const { mutateRemoveTicket, isPendingRemoveTicket, isSuccessRemoveTicket } =
@@ -58,7 +59,7 @@ const DeleteTicketModal = (props: PropTypes) => {
             variant="flat"
             onPress={() => {
               onClose();
-              setSelectedId("");
+              setSelectedDataTicket(null);
             }}
             disabled={isPendingRemoveTicket || isSuccessRemoveTicket}
           >
@@ -67,7 +68,7 @@ const DeleteTicketModal = (props: PropTypes) => {
           <Button
             color="danger"
             type="submit"
-            onPress={() => mutateRemoveTicket(selectedId)}
+            onPress={() => mutateRemoveTicket(`${selectedDataTicket?._id}`)}
             disabled={isPendingRemoveTicket || isSuccessRemoveTicket}
             isLoading={isPendingRemoveTicket || isSuccessRemoveTicket}
           >

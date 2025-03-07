@@ -8,25 +8,25 @@ import {
   CardHeader,
   useDisclosure,
 } from "@heroui/react";
-import { Key, ReactNode, useCallback } from "react";
+import { Key, ReactNode, useCallback, useState } from "react";
 import { COLUMN_LIST_EVENT_TICKET } from "./TicketTab.constants";
 import useTicketTab from "./useTicketTab";
 import AddTicketModal from "./AddTicketModal";
 import DeleteTicketModal from "./DeleteTicketModal";
+import UpdateTicketModal from "./UpdateTicketModal";
+import { ITicket } from "@/types/ticket";
 
 const TicketTab = () => {
-  const {
-    dataTicket,
-    refetchTicket,
-    isPendingTicket,
-    isRefetchingTicket,
-    selectedId,
-    setSelectedId,
-  } = useTicketTab();
+  const { dataTicket, refetchTicket, isPendingTicket, isRefetchingTicket } =
+    useTicketTab();
 
   const addTicketModal = useDisclosure();
   const updateTicketModal = useDisclosure();
   const deleteTicketModal = useDisclosure();
+
+  const [selectedDataTicket, setSelectedDataTicket] = useState<ITicket | null>(
+    null,
+  );
 
   const renderCell = useCallback(
     (ticket: Record<string, unknown>, columnKey: Key) => {
@@ -39,11 +39,11 @@ const TicketTab = () => {
             <DropdownAction
               keyText="ticket"
               onPressButtonDetail={() => {
-                setSelectedId(`${ticket._id}`);
+                setSelectedDataTicket(ticket as ITicket);
                 updateTicketModal.onOpen();
               }}
               onPressButtonDelete={() => {
-                setSelectedId(`${ticket._id}`);
+                setSelectedDataTicket(ticket as ITicket);
                 deleteTicketModal.onOpen();
               }}
             />
@@ -84,8 +84,14 @@ const TicketTab = () => {
       <AddTicketModal {...addTicketModal} refetchTicket={refetchTicket} />
       <DeleteTicketModal
         {...deleteTicketModal}
-        selectedId={selectedId}
-        setSelectedId={setSelectedId}
+        selectedDataTicket={selectedDataTicket}
+        setSelectedDataTicket={setSelectedDataTicket}
+        refetchTicket={refetchTicket}
+      />
+      <UpdateTicketModal
+        {...updateTicketModal}
+        selectedDataTicket={selectedDataTicket}
+        setSelectedDataTicket={setSelectedDataTicket}
         refetchTicket={refetchTicket}
       />
     </section>
