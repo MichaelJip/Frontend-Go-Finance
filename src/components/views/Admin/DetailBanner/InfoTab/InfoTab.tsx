@@ -95,8 +95,8 @@ const InfoTab = (props: PropTypes) => {
                   disallowEmptySelection
                   defaultSelectedKeys={[dataBanner?.isShow ? "true" : "false"]}
                 >
-                  <SelectItem key="true">Publish</SelectItem>
-                  <SelectItem key="false">Draft</SelectItem>
+                  <SelectItem key="true">Show</SelectItem>
+                  <SelectItem key="false">Hide</SelectItem>
                 </Select>
               )}
             />
