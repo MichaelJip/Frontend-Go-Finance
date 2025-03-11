@@ -1,6 +1,7 @@
 "use client";
 
 import AppShell from "@/components/commons/AppShell";
+import { onErrorHandler } from "@/libs/axios/responseHandler";
 import "@/styles/globals.css";
 import { HeroUIProvider } from "@heroui/react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
@@ -12,6 +13,13 @@ const queryClient = new QueryClient({
     queries: {
       refetchOnWindowFocus: false,
       retry: false,
+      throwOnError(error) {
+        onErrorHandler(error)
+        return false;
+      },
+    },
+    mutations: {
+      onError: onErrorHandler,
     },
   },
 });
