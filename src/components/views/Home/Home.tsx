@@ -30,7 +30,7 @@ const Home = () => {
         isLoaded={!isLoadingBanner}
       >
         <Image
-          src={dataBanner && dataBanner[1]?.image}
+          src={dataBanner && dataBanner[0]?.image}
           alt="banner-home"
           className="h-[20vw] w-full rounded-2xl object-cover object-center"
           width={1920}
