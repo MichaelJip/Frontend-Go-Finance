@@ -24,6 +24,7 @@ const Home = () => {
         title="Featured Event"
         events={dataFeaturedEvent}
         isLoadingEvents={isLoadingFeaturedEvent}
+        urlMore="/event?isFeatured=true"
       />
       <Skeleton
         className="mb-16 h-[20vw] w-full rounded-2xl px-6 lg:px-0"

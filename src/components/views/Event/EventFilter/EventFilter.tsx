@@ -48,6 +48,7 @@ const EventFilter = () => {
                   variant="bordered"
                   labelPlacement="outside"
                   placeholder="Search category here..."
+                  defaultSelectedKey={`${currentCategory}`}
                   onSelectionChange={(val) => {
                     onChange(val);
                     handleChangeCategory(val !== null ? `${val}` : "");
