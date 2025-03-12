@@ -7,6 +7,8 @@ import {
   DropdownMenu,
   DropdownTrigger,
   Input,
+  Listbox,
+  ListboxItem,
   Navbar,
   NavbarBrand,
   NavbarContent,
@@ -14,6 +16,7 @@ import {
   NavbarMenu,
   NavbarMenuItem,
   NavbarMenuToggle,
+  Spinner,
 } from "@heroui/react";
 import Image from "next/image";
 import Link from "next/link";
@@ -24,13 +27,30 @@ import { CiSearch } from "react-icons/ci";
 import { signOut, useSession } from "next-auth/react";
 import useLandingPageLayoutNavbar from "./useLandingpageLayoutNavbar";
 import { Fragment } from "react";
+import { IEvent } from "@/types/event";
 
 const LandingPageLayoutNavBar = () => {
   const router = useRouter();
   const session = useSession();
-  const { dataProfile } = useLandingPageLayoutNavbar();
+  const {
+    dataProfile,
+    dataEventSearch,
+    isLoadingEventSearch,
+    isRefetchingEventSearch,
+    handleSearch,
+    search,
+    setSearch,
+  } = useLandingPageLayoutNavbar();
+
+  console.log(dataEventSearch, "check data");
   return (
-    <Navbar maxWidth="full" isBordered isBlurred={false} shouldHideOnScroll className="bg-white">
+    <Navbar
+      maxWidth="full"
+      isBordered
+      isBlurred={false}
+      shouldHideOnScroll
+      className="bg-white"
+    >
       <div className="flex items-center gap-8">
         <NavbarBrand as={Link} href={"/"}>
           <Image
@@ -64,9 +84,39 @@ const LandingPageLayoutNavBar = () => {
             className="w-[300px]"
             placeholder="Search Event"
             startContent={<CiSearch />}
-            onClear={() => {}}
-            onChange={() => {}}
+            onClear={() => setSearch("")}
+            onChange={handleSearch}
           />
+
+          {search !== "" && (
+            <Listbox
+              items={dataEventSearch || []}
+              className="absolute right-0 top-12 rounded-xl border bg-white"
+            >
+              {!isRefetchingEventSearch || !isLoadingEventSearch ? (
+                (item: IEvent) => (
+                  <ListboxItem key={item._id} href={`/event/${item.slug}`}>
+                    <div className="flex items-center gap-2">
+                      <Image
+                        src={`${item.banner}`}
+                        alt={`${item.name}`}
+                        className="w-2/5 rounded-md"
+                        width={100}
+                        height={40}
+                      />
+                      <p className="line-clamp-2 w-3/5 text-wrap">
+                        {item.name}
+                      </p>
+                    </div>
+                  </ListboxItem>
+                )
+              ) : (
+                <ListboxItem key="loading">
+                  <Spinner color="danger" size="sm" />
+                </ListboxItem>
+              )}
+            </Listbox>
+          )}
         </NavbarItem>
 
         {/* Desktop */}
