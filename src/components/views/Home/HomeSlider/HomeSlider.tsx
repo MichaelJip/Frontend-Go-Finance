@@ -31,7 +31,7 @@ const HomeSlider = (props: PropTypes) => {
           }}
         >
           {banners?.map((banner: IBanner) => (
-            <SwiperSlide key={banner._id} className="p-2">
+            <SwiperSlide key={banner._id} >
               <Image
                 src={`${banner.image}`}
                 alt={`${banner.title}`}

@@ -30,7 +30,7 @@ const LandingPageLayoutNavBar = () => {
   const session = useSession();
   const { dataProfile } = useLandingPageLayoutNavbar();
   return (
-    <Navbar maxWidth="full" isBordered isBlurred={false} shouldHideOnScroll>
+    <Navbar maxWidth="full" isBordered isBlurred={false} shouldHideOnScroll className="bg-white">
       <div className="flex items-center gap-8">
         <NavbarBrand as={Link} href={"/"}>
           <Image

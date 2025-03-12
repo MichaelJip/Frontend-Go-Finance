@@ -1,7 +1,5 @@
 import { DateValue } from "@heroui/react";
-import {
-  parseAbsoluteToLocal
-} from "@internationalized/date";
+import { parseAbsoluteToLocal } from "@internationalized/date";
 
 const standardDate = (date: number) => {
   if (date < 10) {
@@ -29,5 +27,18 @@ const toInputDate = (date: string) => {
   return formattedDate;
 };
 
-export { toDateStandard, toInputDate };
+const convertTime = (isoDate: string) => {
+  const dateObject = new Date(isoDate);
+  const date = dateObject.toLocaleString("id-ID", {
+    month: "short",
+    day: "numeric",
+    year: "numeric",
+    hour: "2-digit",
+    minute: "2-digit",
+    timeZone: "Asia/Jakarta",
+  });
 
+  return `${date} WIB`;
+};
+
+export { toDateStandard, toInputDate, convertTime };
