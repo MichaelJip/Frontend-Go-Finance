@@ -26,7 +26,7 @@ const Home = () => {
         isLoadingEvents={isLoadingFeaturedEvent}
       />
       <Skeleton
-        className="mb-16 h-[20vw] w-full rounded-2xl"
+        className="mb-16 h-[20vw] w-full rounded-2xl px-6 lg:px-0"
         isLoaded={!isLoadingBanner}
       >
         <Image
