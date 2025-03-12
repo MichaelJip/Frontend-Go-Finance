@@ -1,8 +1,9 @@
 import { Skeleton } from "@heroui/react";
-import HomeList from "./HomeList";
 import HomeSlider from "./HomeSlider";
 import useHome from "./useHome";
 import Image from "next/image";
+import HomeCategoryList from "./HomeCategoryList";
+import HomeEventList from "./HomeEventList";
 
 const Home = () => {
   const {
@@ -12,12 +13,14 @@ const Home = () => {
     isLoadingFeaturedEvent,
     dataLatestEvents,
     isLoadingLatestEvents,
+    dataCategory,
+    isLoadingCategory,
   } = useHome();
 
   return (
     <div>
       <HomeSlider banners={dataBanner} isLoadingBanners={isLoadingBanner} />
-      <HomeList
+      <HomeEventList
         title="Featured Event"
         events={dataFeaturedEvent}
         isLoadingEvents={isLoadingFeaturedEvent}
@@ -27,17 +30,21 @@ const Home = () => {
         isLoaded={!isLoadingBanner}
       >
         <Image
-          src={dataBanner[0]?.image}
+          src={dataBanner && dataBanner[1]?.image}
           alt="banner-home"
           className="h-[20vw] w-full rounded-2xl object-cover object-center"
           width={1920}
           height={800}
         />
       </Skeleton>
-      <HomeList
+      <HomeEventList
         title="Latest Event"
         events={dataLatestEvents}
         isLoadingEvents={isLoadingLatestEvents}
+      />
+      <HomeCategoryList
+        dataCategory={dataCategory}
+        isLoadingCategory={isLoadingCategory}
       />
     </div>
   );

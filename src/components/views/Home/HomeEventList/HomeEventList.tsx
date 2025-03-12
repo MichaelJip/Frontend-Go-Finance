@@ -8,7 +8,7 @@ interface PropTypees {
   isLoadingEvents: boolean;
 }
 
-const HomeList = (props: PropTypees) => {
+const HomeEventList = (props: PropTypees) => {
   const { title, events, isLoadingEvents } = props;
   return (
     <section className="mb-16">
@@ -39,4 +39,4 @@ const HomeList = (props: PropTypees) => {
   );
 };
 
-export default HomeList;
+export default HomeEventList;
