@@ -9,6 +9,9 @@ const eventServices = {
   getEventById: (id: string) => {
     return instance.get(`${endpoint.EVENT}/${id}`);
   },
+  getEventBySlug: (slug: string) => {
+    return instance.get(`${endpoint.EVENT}/${slug}/slug`);
+  },
   addEvent: (payload: IEvent) => {
     return instance.post(`${endpoint.EVENT}`, payload);
   },
