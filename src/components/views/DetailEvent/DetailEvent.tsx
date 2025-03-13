@@ -11,15 +11,20 @@ import { convertTime } from "@/utils/date";
 import Image from "next/image";
 import { ITicket } from "@/types/ticket";
 import DetailEventTicket from "./DetailEventTicket";
+import DetailEventCart from "./DetailEventCart";
 
 const DetailEvent = () => {
   const {
     dataDetailEvent,
-    // isLoadingDetailEvent,
 
     //ticket
     dataTicket,
-    // isLoadingTicket,
+
+    //cart
+    cart,
+    dataTicketInCart,
+    handleAddToCart,
+    handleChangeQuantity,
   } = useDetailEvent();
   return (
     <div className="px-8 md:px-0">
@@ -108,6 +113,8 @@ const DetailEvent = () => {
                   <DetailEventTicket
                     key={`ticket-${ticket._id}`}
                     ticket={ticket}
+                    cart={cart}
+                    handleAddToCart={() => handleAddToCart(`${ticket?._id}`)}
                   />
                 ))}
               </div>
@@ -115,7 +122,13 @@ const DetailEvent = () => {
           </Tabs>
         </div>
 
-        <div className="w-full lg:w-2/6"></div>
+        <div className="w-full lg:w-2/6">
+          <DetailEventCart
+            cart={cart}
+            dataTicketInCart={dataTicketInCart}
+            onChangeQuantity={handleChangeQuantity}
+          />
+        </div>
       </section>
     </div>
   );
