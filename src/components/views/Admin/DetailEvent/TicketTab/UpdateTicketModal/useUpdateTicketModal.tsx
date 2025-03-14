@@ -41,7 +41,7 @@ const useUpdateTicketModal = (id: string) => {
       addToast({
         title: "Failed",
         description: error.message,
-        color: "danger",
+        color: "primary",
       });
     },
     onSuccess: () => {

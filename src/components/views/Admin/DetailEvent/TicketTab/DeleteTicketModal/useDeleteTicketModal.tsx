@@ -18,7 +18,7 @@ const useDeleteTicketModal = () => {
       addToast({
         title: "Failed",
         description: error.message,
-        color: "danger",
+        color: "primary",
       });
     },
     onSuccess: () => {

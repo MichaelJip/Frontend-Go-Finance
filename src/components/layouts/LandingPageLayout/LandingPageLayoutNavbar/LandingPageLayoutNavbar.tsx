@@ -66,8 +66,8 @@ const LandingPageLayoutNavBar = () => {
               key={`nav-${item.label}`}
               as={Link}
               href={item.href}
-              className={cn("font-medium text-default-700 hover:text-danger", {
-                "font-bold text-danger-500": router.pathname === item.href,
+              className={cn("font-medium text-default-700 hover:text-primary", {
+                "font-bold text-primary-500": router.pathname === item.href,
               })}
             >
               {item.label}
@@ -111,7 +111,7 @@ const LandingPageLayoutNavBar = () => {
                 )
               ) : (
                 <ListboxItem key="loading">
-                  <Spinner color="danger" size="sm" />
+                  <Spinner color="primary" size="sm" />
                 </ListboxItem>
               )}
             </Listbox>
@@ -151,7 +151,7 @@ const LandingPageLayoutNavBar = () => {
             {BUTTON_ITEMS.map((item) => (
               <NavbarItem key={`button-${item.label}`}>
                 <Button
-                  color="danger"
+                  color="primary"
                   as={Link}
                   href={item.href}
                   variant={item.variant as ButtonProps["variant"]}
@@ -170,9 +170,9 @@ const LandingPageLayoutNavBar = () => {
               <Link
                 href={item.href}
                 className={cn(
-                  "font-medium text-default-700 hover:text-danger",
+                  "font-medium text-default-700 hover:text-primary",
                   {
-                    "font-bold text-danger": router.pathname === item.href,
+                    "font-bold text-primary": router.pathname === item.href,
                   },
                 )}
               >
@@ -187,7 +187,7 @@ const LandingPageLayoutNavBar = () => {
                 <Link
                   href={"/admin/dashboard"}
                   className={cn(
-                    "font-medium text-default-700 hover:text-danger",
+                    "font-medium text-default-700 hover:text-primary",
                     {
                       hidden: dataProfile?.role === "admin",
                     },
@@ -200,7 +200,7 @@ const LandingPageLayoutNavBar = () => {
                 <Link
                   href={"/member/profile"}
                   className={cn(
-                    "font-medium text-default-700 hover:text-danger",
+                    "font-medium text-default-700 hover:text-primary",
                   )}
                 >
                   Profile
@@ -208,7 +208,7 @@ const LandingPageLayoutNavBar = () => {
               </NavbarMenuItem>
               <NavbarMenuItem>
                 <Button
-                  color="danger"
+                  color="primary"
                   onPress={() => signOut()}
                   className="mt-2 w-full"
                   variant="bordered"
@@ -223,7 +223,7 @@ const LandingPageLayoutNavBar = () => {
               {BUTTON_ITEMS.map((item) => (
                 <NavbarMenuItem key={`button-${item.label}`}>
                   <Button
-                    color="danger"
+                    color="primary"
                     as={Link}
                     href={item.href}
                     variant={item.variant as ButtonProps["variant"]}

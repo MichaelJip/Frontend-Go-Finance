@@ -31,7 +31,7 @@ const Activation = (props: PropsTypes) => {
         />
       </div>
       <div className="flex flex-col items-center gap-2 text-center">
-        <h1 className="text-xl font-bold text-danger-500 md:text-3xl lg:text-3xl">
+        <h1 className="text-xl font-bold text-primary-500 md:text-3xl lg:text-3xl">
           Activation {status === "success" ? "Success" : "Failed"}
         </h1>
         <p className="text-base font-bold text-default-500 md:text-xl lg:text-xl">
@@ -42,7 +42,7 @@ const Activation = (props: PropsTypes) => {
         <Button
           className="mt-4 w-fit"
           variant="bordered"
-          color="danger"
+          color="primary"
           onPress={() => router.push("/")}
         >
           Back To Home

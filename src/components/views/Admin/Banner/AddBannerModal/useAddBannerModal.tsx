@@ -76,7 +76,7 @@ const useAddBannerModal = () => {
       addToast({
         title: "Failed",
         description: error.message,
-        color: "danger",
+        color: "primary",
       });
     },
     onSuccess: () => {

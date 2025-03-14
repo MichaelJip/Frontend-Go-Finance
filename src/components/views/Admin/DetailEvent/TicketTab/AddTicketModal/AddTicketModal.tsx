@@ -118,7 +118,7 @@ const AddTicketModal = (props: PropsTypes) => {
           </ModalBody>
           <ModalFooter>
             <Button
-              color="danger"
+              color="primary"
               variant="flat"
               onPress={handleOnClose}
               disabled={isPendingAddTicket || isSuccessAddTicket}
@@ -126,10 +126,10 @@ const AddTicketModal = (props: PropsTypes) => {
               Cancel
             </Button>
             <Button
-              color="danger"
+              color="primary"
               type="submit"
-              disabled={isPendingAddTicket || isSuccessAddTicket}
-              isLoading={isPendingAddTicket || isSuccessAddTicket}
+              disabled={isPendingAddTicket}
+              isLoading={isPendingAddTicket}
             >
               Create Ticket
             </Button>

@@ -27,7 +27,7 @@ const useMediaHandling = () => {
         addToast({
           title: "Failed",
           description: error.message,
-          color: "danger",
+          color: "primary",
         });
       },
     });
@@ -47,7 +47,7 @@ const useMediaHandling = () => {
         addToast({
           title: "Failed",
           description: error.message,
-          color: "danger",
+          color: "primary",
         });
       },
     });

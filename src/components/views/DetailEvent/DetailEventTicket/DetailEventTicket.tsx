@@ -30,7 +30,7 @@ const DetailEventTicket = (props: PropsTypes) => {
                   Available
                 </Chip>
               ) : (
-                <Chip size="sm" color="danger" variant="bordered">
+                <Chip size="sm" color="primary" variant="bordered">
                   Sold Out
                 </Chip>
               )}

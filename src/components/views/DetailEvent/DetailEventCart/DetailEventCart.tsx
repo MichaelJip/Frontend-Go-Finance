@@ -60,10 +60,10 @@ const DetailEventCart = (props: PropTypes) => {
           </CardBody>
           <CardFooter>
             <Button
-              color="danger"
+              color="primary"
               size="md"
               disabled={cart.quantity === 0 || isLoading}
-              className="disabled:bg-danger-200"
+              className="disabled:bg-primary-200"
               fullWidth
               isLoading={isLoading}
               onPress={onCreateOrder}
@@ -75,7 +75,7 @@ const DetailEventCart = (props: PropTypes) => {
       ) : (
         <CardBody>
           <Button
-            color="danger"
+            color="primary"
             size="lg"
             as={Link}
             href={`/auth/login?callbackUrl=/event/${router.query.slug}`}

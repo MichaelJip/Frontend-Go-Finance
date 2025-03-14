@@ -55,7 +55,7 @@ const DeleteTicketModal = (props: PropTypes) => {
         </ModalBody>
         <ModalFooter>
           <Button
-            color="danger"
+            color="primary"
             variant="flat"
             onPress={() => {
               onClose();
@@ -66,7 +66,7 @@ const DeleteTicketModal = (props: PropTypes) => {
             Cancel
           </Button>
           <Button
-            color="danger"
+            color="primary"
             type="submit"
             onPress={() => mutateRemoveTicket(`${selectedDataTicket?._id}`)}
             disabled={isPendingRemoveTicket || isSuccessRemoveTicket}

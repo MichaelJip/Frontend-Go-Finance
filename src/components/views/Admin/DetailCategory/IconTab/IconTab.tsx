@@ -86,7 +86,7 @@ const IconTab = (props: PropTypes) => {
             )}
           />
           <Button
-            color="danger"
+            color="primary"
             className="mt-2 disabled:bg-default-500"
             type="submit"
             disabled={isPendingUploadFile || isPendingUpdateCategory || !icon}

@@ -49,7 +49,7 @@ const Event = () => {
                 width={200}
                 height={200}
               />
-              <h2 className="text-center text-2xl font-bold text-danger">
+              <h2 className="text-center text-2xl font-bold text-primary">
                 Event is empty
               </h2>
             </div>

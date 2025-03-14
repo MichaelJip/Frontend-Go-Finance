@@ -54,7 +54,7 @@ const DeleteEventModal = (props: PropTypes) => {
         </ModalBody>
         <ModalFooter>
           <Button
-            color="danger"
+            color="primary"
             variant="flat"
             onPress={() => {
               onClose();
@@ -65,7 +65,7 @@ const DeleteEventModal = (props: PropTypes) => {
             Cancel
           </Button>
           <Button
-            color="danger"
+            color="primary"
             type="submit"
             onPress={() => mutateRemoveEvent(selectedId)}
             disabled={isPendingRemoveEvent}

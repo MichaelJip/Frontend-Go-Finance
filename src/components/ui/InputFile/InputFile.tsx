@@ -78,7 +78,7 @@ const InputFile = (props: PropsTypes) => {
         className={cn(
           "flex min-h-24 w-full cursor-pointer flex-col items-center justify-center rounded-lg border-2 border-dashed border-gray-300 bg-gray-50 hover:bg-gray-100",
           classname,
-          { "border-danger-500": isInvalid },
+          { "border-primary-500": isInvalid },
         )}
       >
         {preview && (
@@ -89,11 +89,11 @@ const InputFile = (props: PropsTypes) => {
             <Button
               isIconOnly
               onPress={onDelete}
-              className="absolute right-2 top-2 flex h-9 w-9 items-center justify-center rounded bg-danger-100"
+              className="absolute right-2 top-2 flex h-9 w-9 items-center justify-center rounded bg-primary-100"
               disabled={isDeleting}
               isLoading={isDeleting}
             >
-              <CiTrash className="h-5 w-5 text-danger-500" />
+              <CiTrash className="h-5 w-5 text-primary-500" />
             </Button>
           </div>
         )}
@@ -109,7 +109,7 @@ const InputFile = (props: PropsTypes) => {
         )}
         {isUploading && (
           <div className="flex flex-col items-center justify-center p-5">
-            <Spinner color="danger" />
+            <Spinner color="primary" />
           </div>
         )}
         <input
@@ -127,7 +127,7 @@ const InputFile = (props: PropsTypes) => {
         />
       </label>
       {isInvalid && (
-        <p className="p-1 text-xs text-danger-500">{errorMessage}</p>
+        <p className="p-1 text-xs text-primary-500">{errorMessage}</p>
       )}
     </div>
   );

@@ -30,7 +30,7 @@ const EventFooter = (props: PropTypes) => {
         <Pagination
           isCompact
           showControls
-          color="danger"
+          color="primary"
           page={Number(currentPage)}
           total={totalPages}
           onChange={handleChangePage}

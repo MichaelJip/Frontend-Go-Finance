@@ -49,7 +49,7 @@ const DashboardLayoutSidebar = (props: PropsTypes) => {
             <ListboxItem
               key={item.key}
               className={cn("my-1 h-12 text-2xl", {
-                "bg-danger-500 text-white": router.pathname.startsWith(
+                "bg-primary-500 text-white": router.pathname.startsWith(
                   item.href,
                 ),
               })}
@@ -66,7 +66,7 @@ const DashboardLayoutSidebar = (props: PropsTypes) => {
       </div>
       <div className="flex items-center p-1">
         <Button
-          color="danger"
+          color="primary"
           fullWidth
           variant="light"
           className="flex justify-start rounded-lg px-2 py-1.5"

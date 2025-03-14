@@ -79,7 +79,7 @@ const useRegister = () => {
       addToast({
         title: "Failed",
         description: error.message,
-        color: "danger",
+        color: "primary",
       });
     },
     onSuccess: () => {

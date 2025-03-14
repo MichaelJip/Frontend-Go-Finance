@@ -97,7 +97,7 @@ const InfoTab = (props: PropTypes) => {
             />
           </Skeleton>
           <Button
-            color="danger"
+            color="primary"
             className="mt-2 disabled:bg-default-500"
             type="submit"
             disabled={isPendingUpdateCategory || !dataCategory._id}

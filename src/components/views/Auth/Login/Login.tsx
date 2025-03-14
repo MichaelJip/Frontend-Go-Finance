@@ -37,20 +37,20 @@ const Login = () => {
       <div>
         <Card>
           <CardBody className="p-8">
-            <h2 className="text-xl font-bold text-danger-500">
+            <h2 className="text-xl font-bold text-primary-500">
               Create Account
             </h2>
             <p className="mb-4 text-small">
               Don&apos;t have an account? &nbsp;
               <Link
-                className="font-semibold text-danger-400"
+                className="font-semibold text-primary-400"
                 href="/auth/register"
               >
                 Register here
               </Link>
             </p>
             {errors.root && (
-              <p className="mb-2 font-medium text-danger">
+              <p className="mb-2 font-medium text-primary">
                 {errors?.root.message}
               </p>
             )}
@@ -109,7 +109,7 @@ const Login = () => {
 
               <Button
                 isLoading={isPendingLogin}
-                color="danger"
+                color="primary"
                 size="lg"
                 type="submit"
               >

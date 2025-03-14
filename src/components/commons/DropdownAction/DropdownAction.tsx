@@ -31,7 +31,7 @@ const DropdownAction = (props: PropTypes) => {
         </DropdownItem>
         <DropdownItem
           key={`delete-${keyText}-button`}
-          className="text-danger-500"
+          className="text-primary-500" 
           onPress={onPressButtonDelete}
         >
           Delete
