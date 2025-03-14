@@ -89,8 +89,10 @@ const useDetailEvent = () => {
       },
       onSuccess: (result) => {
         const transactionToken = result.payment.token;
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        (window as any).snap.pay(transactionToken);
+        // (window as any).snap.pay(transactionToken);
+        (
+          window as unknown as { snap: { pay: (token: string) => void } }
+        ).snap.pay(transactionToken);
       },
     });
 
