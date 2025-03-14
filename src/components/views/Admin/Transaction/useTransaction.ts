@@ -2,38 +2,42 @@ import useChangeUrl from "@/hooks/useChangeUrl";
 import orderServices from "@/services/order.service";
 import { useQuery } from "@tanstack/react-query";
 import { useRouter } from "next/router";
+import { useState } from "react";
 
 const useTransaction = () => {
   const router = useRouter();
+  const [selectedId, setSelectedId] = useState<string>("");
   const { currentLimit, currentPage, currentSearch } = useChangeUrl();
 
-  const getTransactionByMember = async () => {
+  const getTransaction = async () => {
     let params = `limit=${currentLimit}&page=${currentPage}`;
     if (currentSearch) {
       params += `&search=${currentSearch}`;
     }
-    const res = await orderServices.getMemberOrder(params);
+    const res = await orderServices.getAdminOrders(params);
     const { data } = res;
     return data;
   };
 
   const {
-    data: dataTransactionByMember,
-    isLoading: isLoadingTransactionByMember,
-    isRefetching: isRefetchingTransactionByMember,
-    refetch: refetchTransactionByMember,
+    data: dataTransaction,
+    isLoading: isLoadingTransaction,
+    isRefetching: isRefetchingTransaction,
+    refetch: refetchTransaction,
   } = useQuery({
-    queryKey: ["TransactionByMember", currentPage, currentLimit, currentSearch],
-    queryFn: () => getTransactionByMember(),
+    queryKey: ["AdminTransaction", currentPage, currentLimit, currentSearch],
+    queryFn: () => getTransaction(),
     enabled: router.isReady && !!currentPage && !!currentLimit,
   });
 
   return {
+    selectedId,
+    setSelectedId,
     //data transactions
-    dataTransactionByMember,
-    isLoadingTransactionByMember,
-    isRefetchingTransactionByMember,
-    refetchTransactionByMember,
+    dataTransaction,
+    isLoadingTransaction,
+    isRefetchingTransaction,
+    refetchTransaction,
   };
 };
 

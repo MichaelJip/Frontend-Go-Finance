@@ -7,7 +7,7 @@ import {
   ModalHeader,
 } from "@heroui/react";
 import { Dispatch, SetStateAction, useEffect } from "react";
-import useDeleteCategoryModal from "./useDeleteCategoryModal";
+import useDeleteTransactionModal from "./useDeleteTransactionModal";
 
 interface PropsTypes {
   isOpen: boolean;
@@ -15,31 +15,31 @@ interface PropsTypes {
   setSelectedId: Dispatch<SetStateAction<string>>;
   onClose: () => void;
   onOpenChange: () => void;
-  refetchCategory: () => void;
+  refetchTransaction: () => void;
 }
 
-const DeleteCategoryModal = (props: PropsTypes) => {
+const DeleteTransactionModal = (props: PropsTypes) => {
   const {
     isOpen,
     onClose,
     onOpenChange,
-    refetchCategory,
+    refetchTransaction,
     selectedId,
     setSelectedId,
   } = props;
 
   const {
-    mutateRemoveCategory,
-    isPendingRemoveCategory,
-    isSuccessRemoveCategory,
-  } = useDeleteCategoryModal();
+    mutateRemoveTransaction,
+    isPendingRemoveTransaction,
+    isSuccessRemoveTransaction,
+  } = useDeleteTransactionModal();
 
   useEffect(() => {
-    if (isSuccessRemoveCategory) {
+    if (isSuccessRemoveTransaction) {
       onClose();
-      refetchCategory();
+      refetchTransaction();
     }
-  }, [isSuccessRemoveCategory, refetchCategory, onClose]);
+  }, [isSuccessRemoveTransaction, refetchTransaction, onClose]);
 
   return (
     <Modal
@@ -49,10 +49,10 @@ const DeleteCategoryModal = (props: PropsTypes) => {
       scrollBehavior="inside"
     >
       <ModalContent className="m-4">
-        <ModalHeader>Delete Category</ModalHeader>
+        <ModalHeader>Delete Transaction</ModalHeader>
         <ModalBody>
           <p className="text-medium">
-            Are you sure you want to delete this category
+            Are you sure you want to delete this Transaction
           </p>
         </ModalBody>
         <ModalFooter>
@@ -63,18 +63,18 @@ const DeleteCategoryModal = (props: PropsTypes) => {
               onClose();
               setSelectedId("");
             }}
-            disabled={isPendingRemoveCategory}
+            disabled={isPendingRemoveTransaction}
           >
             Cancel
           </Button>
           <Button
             color="primary"
             type="submit"
-            onPress={() => mutateRemoveCategory(selectedId)}
-            disabled={isPendingRemoveCategory}
-            isLoading={isPendingRemoveCategory}
+            onPress={() => mutateRemoveTransaction(selectedId)}
+            disabled={isPendingRemoveTransaction}
+            isLoading={isPendingRemoveTransaction}
           >
-            Delete Category
+            Delete Transaction
           </Button>
         </ModalFooter>
       </ModalContent>
@@ -82,4 +82,4 @@ const DeleteCategoryModal = (props: PropsTypes) => {
   );
 };
 
-export default DeleteCategoryModal;
+export default DeleteTransactionModal;

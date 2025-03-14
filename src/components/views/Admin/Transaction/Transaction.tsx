@@ -4,19 +4,25 @@ import useChangeUrl from "@/hooks/useChangeUrl";
 import { Key, ReactNode, useCallback, useEffect } from "react";
 import { COLUMN_LIST_TRANSACTION } from "./Transaction.constants";
 import DataTable from "@/components/ui/DataTable";
-import { Chip } from "@heroui/react";
+import { Chip, useDisclosure } from "@heroui/react";
 import DropdownAction from "@/components/commons/DropdownAction";
 import { convertIDR } from "@/utils/formatCurrency";
+import DeleteTransactionModal from "./DeleteTransactionModal";
 
 const Transaction = () => {
   const { push, query, isReady } = useRouter();
   const {
-    dataTransactionByMember,
-    isLoadingTransactionByMember,
-    isRefetchingTransactionByMember,
+    selectedId,
+    setSelectedId,
+    dataTransaction,
+    isLoadingTransaction,
+    isRefetchingTransaction,
+    refetchTransaction,
   } = useTransaction();
 
   const { setUrl } = useChangeUrl();
+
+  const deleteTransactionModal = useDisclosure();
 
   useEffect(() => {
     if (isReady) {
@@ -35,7 +41,10 @@ const Transaction = () => {
               onPressButtonDetail={() =>
                 push(`/member/transaction/${transaction.orderId}`)
               }
-              hideButtonDelete={true}
+              onPressButtonDelete={() => {
+                setSelectedId(`${transaction.orderId}`);
+                deleteTransactionModal.onOpen();
+              }}
             />
           );
         case "status":
@@ -63,14 +72,18 @@ const Transaction = () => {
         <DataTable
           renderCell={renderCell}
           columns={COLUMN_LIST_TRANSACTION}
-          totalPages={dataTransactionByMember?.pagination.totalPages}
+          totalPages={dataTransaction?.pagination.totalPages}
           emptyContent="Transaction is empty"
-          data={dataTransactionByMember?.data || []}
-          isLoading={
-            isLoadingTransactionByMember || isRefetchingTransactionByMember
-          }
+          data={dataTransaction?.data || []}
+          isLoading={isLoadingTransaction || isRefetchingTransaction}
         />
       )}
+      <DeleteTransactionModal
+        {...deleteTransactionModal}
+        selectedId={selectedId}
+        setSelectedId={setSelectedId}
+        refetchTransaction={refetchTransaction}
+      />
     </section>
   );
 };
