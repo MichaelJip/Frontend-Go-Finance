@@ -88,8 +88,8 @@ const useDetailEvent = () => {
         });
       },
       onSuccess: (result) => {
-          const transactionToken = result.payment.token;
-          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        const transactionToken = result.payment.token;
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         (window as any).snap.pay(transactionToken);
       },
     });
