@@ -23,6 +23,12 @@ interface IProfile {
   profilePicture?: string | FileList;
 }
 
+interface IUpdatePassword {
+  oldPassword?: string;
+  password?: string;
+  confirmPassword?: string;
+}
+
 interface ILogin {
   identifier: string;
   password: string;
@@ -46,6 +52,7 @@ export type {
   IActivation,
   ILogin,
   IProfile,
+  IUpdatePassword,
   JWTExtended,
   SessionExtended,
   UserExtended,

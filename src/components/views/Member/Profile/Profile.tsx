@@ -2,6 +2,7 @@ import { Tab, Tabs } from "@heroui/react";
 import PictureTab from "./PictureTab/PictureTab";
 import useProfile from "./useProfile";
 import InfoTab from "./InfoTab/InfoTab";
+import SecurityTab from "./SecurityTab";
 
 const Profile = () => {
   const {
@@ -29,16 +30,9 @@ const Profile = () => {
           isPendingUpdateProfile={isPendingUpdateProfile}
         />
       </Tab>
-      {/* <Tab key={"location"} title="Location">
-        <LocationTab
-          dataEvent={dataEvent}
-          dataDefaultRegion={dataDefaultRegion?.data?.data[0]?.name}
-          isPendingDefaultRegion={isPendingDefaultRegion}
-          onUpdate={handleUpdateLocation}
-          isPendingSuccessEvent={isSuccessUpdateEvent}
-          isPendingUpdateEvent={isPendingUpdateEvent}
-        />
-      </Tab> */}
+      <Tab key={"Security"} title="Security">
+        <SecurityTab />
+      </Tab>
     </Tabs>
   );
 };
