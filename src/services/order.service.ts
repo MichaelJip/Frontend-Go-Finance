@@ -9,6 +9,12 @@ const orderServices = {
   updateStatusPayment: (id: string, status: string) => {
     return instance.put(`${endpoint.ORDER}/${id}/${status}`);
   },
+  getMemberOrder: (params: string) => {
+    return instance.get(`${endpoint.ORDER}-history?${params}`);
+  },
+  getOrderById: (id: string) => {
+    return instance.get(`${endpoint.ORDER}/${id}`);
+  },
 };
 
 export default orderServices;
