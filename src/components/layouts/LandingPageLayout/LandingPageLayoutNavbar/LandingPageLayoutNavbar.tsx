@@ -42,7 +42,6 @@ const LandingPageLayoutNavBar = () => {
     setSearch,
   } = useLandingPageLayoutNavbar();
 
-  console.log(dataEventSearch, "check data");
   return (
     <Navbar
       maxWidth="full"
