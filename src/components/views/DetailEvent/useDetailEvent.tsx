@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import eventServices from "@/services/event.service";
 import ticketServices from "@/services/ticket.service";
 import { ICart, ITicket } from "@/types/ticket";
@@ -90,7 +89,8 @@ const useDetailEvent = () => {
       },
       onSuccess: (result) => {
         const transactionToken = result.payment.token;
-        (window as any).snap.pay(transactionToken);
+        // (window as any).snap.pay(transactionToken);
+        (window as unknown as { snap: { pay: (token: string) => void } }).snap.pay(transactionToken);
       },
     });
 
