@@ -36,7 +36,7 @@ const Activation = (props: PropsTypes) => {
         </h1>
         <p className="text-base font-bold text-default-500 md:text-xl lg:text-xl">
           {props.status === "success"
-            ? "Thank you for register account in Acara"
+            ? "Thank you for register account in Go Finance"
             : "Confirmation code is invalid"}
         </p>
         <Button

@@ -3,7 +3,7 @@ import RegisterSuccess from "@/components/views/Auth/RegisterSuccess";
 
 const RegisterSuccessPage = () => {
   return (
-    <AuthLayout title="Acara | Register Success">
+    <AuthLayout title="Go Finance | Register Success">
       <RegisterSuccess />
     </AuthLayout>
   );

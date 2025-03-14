@@ -5,7 +5,7 @@ interface PropsTypes {
 }
 
 const PageHead = (props: PropsTypes) => {
-  const { title = "Acara" } = props;
+  const { title = "Go Finance" } = props;
   return (
     <Head>
       <title>{title}</title>

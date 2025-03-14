@@ -9,7 +9,7 @@ interface PropsTypes {
 
 const ActivationPage = (props: PropsTypes) => {
   return (
-    <AuthLayout title="Acara | Activation">
+    <AuthLayout title="Go Finance | Activation">
       <Activation {...props} />
     </AuthLayout>
   );

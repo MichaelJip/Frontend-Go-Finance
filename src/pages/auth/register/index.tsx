@@ -3,7 +3,7 @@ import Register from "@/components/views/Auth/Register";
 
 const RegisterPage = () => {
   return (
-    <AuthLayout title="Acara | Register">
+    <AuthLayout title="Go Finance | Register">
       <Register />
     </AuthLayout>
   );

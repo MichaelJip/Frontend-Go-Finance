@@ -17,8 +17,8 @@ const LandingPageLayoutFooter = () => {
         <div>
           <h4 className="text-xl text-white">Customer Service</h4>
           <p className="text-gray-600">
-            <Link href={"mailto:hello@acara.id"}>hello@acara.id</Link> |{" "}
-            <Link href={"tel:+6285770326589"}>+62 8577 7032 6589</Link>
+            <Link href={"mailto:hello@gofinance.id"}>hello@gofinance.id</Link> |{" "}
+            <Link href={"tel:+62857123456"}>+62 857 123 456</Link>
           </p>
         </div>
         <div>
@@ -55,7 +55,7 @@ const LandingPageLayoutFooter = () => {
           ))}
         </div>
         <p className="w-full text-center text-gray-600">
-          Copyright 2025 Acara. All rights reserved.
+          Copyright 2025 Go Finance. All rights reserved.
         </p>
       </div>
     </div>
