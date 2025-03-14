@@ -44,7 +44,12 @@ const DetailEvent = () => {
         <Breadcrumbs className="flex">
           <BreadcrumbItem href="/">Home</BreadcrumbItem>
           <BreadcrumbItem href="/event">Event</BreadcrumbItem>
-          <BreadcrumbItem>{dataDetailEvent?.name}</BreadcrumbItem>
+          <BreadcrumbItem
+            className="max-w-[250px] overflow-hidden truncate whitespace-nowrap md:max-w-[400px] lg:max-w-full"
+            title={dataDetailEvent?.name}
+          >
+            {dataDetailEvent?.name}
+          </BreadcrumbItem>
         </Breadcrumbs>
       </Skeleton>
 
