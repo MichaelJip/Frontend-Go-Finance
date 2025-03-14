@@ -29,7 +29,7 @@ const DetailEvent = () => {
     mutateCreateOrder,
     isPendingCreateOrder,
   } = useDetailEvent();
-  
+
   return (
     <div className="px-8 md:px-0">
       <Script
@@ -41,38 +41,40 @@ const DetailEvent = () => {
         className="h-6 w-1/4 rounded-lg"
         isLoaded={!!dataDetailEvent?.name}
       >
-        <Breadcrumbs>
+        <Breadcrumbs className="flex flex-row">
           <BreadcrumbItem href="/">Home</BreadcrumbItem>
           <BreadcrumbItem href="/event">Event</BreadcrumbItem>
-          <BreadcrumbItem>{dataDetailEvent?.name}</BreadcrumbItem>
+          <BreadcrumbItem className="truncate">
+            {dataDetailEvent?.name}
+          </BreadcrumbItem>
         </Breadcrumbs>
       </Skeleton>
-      <section className="mt-4 flex flex-col gap-10 lg:flex-row">
-        <div className="w-full lg:w-4/6">
+      <section className="mt-4 flex flex-col gap-6 lg:flex-row lg:gap-12">
+        <div className="w-full overflow-y-auto sm:w-full md:w-1/2 lg:max-h-[500px] lg:w-2/6">
           <Skeleton
             isLoaded={!!dataDetailEvent?.name}
-            className="mb-2 h-10 rounded-lg"
+            className="mb-2 h-auto rounded-lg lg:h-10"
           >
-            <h1 className="text-2xl font-semibold text-primary">
+            <h1 className="balance text-wrap break-words text-lg font-semibold text-primary md:text-xl lg:text-2xl">
               {dataDetailEvent?.name}
             </h1>
           </Skeleton>
           <Skeleton
-            className="mb-2 h-6 w-1/2 rounded-lg"
+            className="mb-2 h-auto w-full rounded-lg lg:h-6 lg:w-1/2"
             isLoaded={
               !!dataDetailEvent?.startDate || !!dataDetailEvent?.endDate
             }
           >
-            <div className="flex items-center gap-4 text-foreground-500">
-              <FaClock width={16} />
-              <p>
+            <div className="flex flex-row items-center gap-2 text-foreground-500">
+              <FaClock width={16} className="h-4" />
+              <p className="text-sm sm:text-base md:text-lg">
                 {convertTime(dataDetailEvent?.startDate)} -{" "}
                 {convertTime(dataDetailEvent?.endDate)}
               </p>
             </div>
           </Skeleton>
           <Skeleton
-            className="mb-2 h-6 w-1/2 rounded-lg"
+            className="mb-2 h-6 w-full rounded-lg lg:w-1/2"
             isLoaded={
               !!dataDetailEvent?.isOnline || !!dataDetailEvent?.location
             }
@@ -131,7 +133,7 @@ const DetailEvent = () => {
           </Tabs>
         </div>
 
-        <div className="w-full lg:w-2/6">
+        <div className="w-full sm:w-full md:w-1/2 lg:w-2/6">
           <DetailEventCart
             cart={cart}
             dataTicketInCart={dataTicketInCart}
