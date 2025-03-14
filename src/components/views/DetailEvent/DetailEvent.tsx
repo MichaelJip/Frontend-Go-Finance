@@ -41,21 +41,20 @@ const DetailEvent = () => {
         className="h-6 w-1/4 rounded-lg"
         isLoaded={!!dataDetailEvent?.name}
       >
-        <Breadcrumbs className="flex flex-row">
+        <Breadcrumbs className="flex">
           <BreadcrumbItem href="/">Home</BreadcrumbItem>
           <BreadcrumbItem href="/event">Event</BreadcrumbItem>
-          <BreadcrumbItem className="truncate">
-            {dataDetailEvent?.name}
-          </BreadcrumbItem>
+          <BreadcrumbItem>{dataDetailEvent?.name}</BreadcrumbItem>
         </Breadcrumbs>
       </Skeleton>
-      <section className="mt-4 flex flex-col gap-6 lg:flex-row lg:gap-12">
-        <div className="w-full overflow-y-auto sm:w-full md:w-1/2 lg:max-h-[500px] lg:w-2/6">
+
+      <section className="mt-4 flex flex-col gap-10 lg:flex-row">
+        <div className="w-full lg:w-4/6">
           <Skeleton
             isLoaded={!!dataDetailEvent?.name}
-            className="mb-2 h-auto rounded-lg lg:h-10"
+            className="mb-2 h-auto rounded-lg lg:h-8"
           >
-            <h1 className="balance text-wrap break-words text-lg font-semibold text-primary md:text-xl lg:text-2xl">
+            <h1 className="text-2xl font-semibold text-primary">
               {dataDetailEvent?.name}
             </h1>
           </Skeleton>
@@ -65,27 +64,27 @@ const DetailEvent = () => {
               !!dataDetailEvent?.startDate || !!dataDetailEvent?.endDate
             }
           >
-            <div className="flex flex-row items-center gap-2 text-foreground-500">
-              <FaClock width={16} className="h-4" />
-              <p className="text-sm sm:text-base md:text-lg">
+            <div className="flex items-center gap-2 text-foreground-500">
+              <FaClock width={16} />
+              <p>
                 {convertTime(dataDetailEvent?.startDate)} -{" "}
                 {convertTime(dataDetailEvent?.endDate)}
               </p>
             </div>
           </Skeleton>
           <Skeleton
-            className="mb-2 h-6 w-full rounded-lg lg:w-1/2"
+            className="mb-2 h-6 w-1/2 rounded-lg"
             isLoaded={
               !!dataDetailEvent?.isOnline || !!dataDetailEvent?.location
             }
           >
-            <div className="flex items-center gap-4 text-foreground-500">
+            <div className="flex items-center gap-2 text-foreground-500">
               <FaLocationArrow width={16} />
               <p>
                 {dataDetailEvent?.isOnline ? "Online" : "Offline"}{" "}
                 {dataDetailEvent?.isOnline
                   ? ""
-                  : `- ${dataDetailEvent?.location?.address}`}
+                  : ` - ${dataDetailEvent?.location?.address}`}
               </p>
             </div>
           </Skeleton>
@@ -107,7 +106,7 @@ const DetailEvent = () => {
                 About Event
               </h2>
               <Skeleton
-                className="mt-2 h-32 w-full rounded-lg"
+                className="mt-2 h-auto w-full rounded-lg"
                 isLoaded={!!dataDetailEvent?.description}
               >
                 <p className="text-foreground-500">
@@ -125,15 +124,14 @@ const DetailEvent = () => {
                     key={`ticket-${ticket._id}`}
                     ticket={ticket}
                     cart={cart}
-                    handleAddToCart={() => handleAddToCart(`${ticket?._id}`)}
+                    handleAddToCart={() => handleAddToCart(`${ticket._id}`)}
                   />
                 ))}
               </div>
             </Tab>
           </Tabs>
         </div>
-
-        <div className="w-full sm:w-full md:w-1/2 lg:w-2/6">
+        <div className="w-full lg:w-2/6">
           <DetailEventCart
             cart={cart}
             dataTicketInCart={dataTicketInCart}

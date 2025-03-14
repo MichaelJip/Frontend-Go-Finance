@@ -28,7 +28,7 @@ const DetailEventCart = (props: PropTypes) => {
             {cart?.ticket === "" ? (
               <p className="text-foreground-500">Your cart is empty</p>
             ) : (
-              <div className="flex items-center justify-between">
+              <div className="items-center justify-between sm:flex-col lg:flex lg:flex-row">
                 <div className="flex items-center gap-2">
                   <h4 className="font-bold">{dataTicketInCart.name}</h4>
                   <div className="flex items-center gap-2">

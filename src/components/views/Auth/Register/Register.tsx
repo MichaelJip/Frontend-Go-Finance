@@ -36,7 +36,7 @@ const Register = () => {
       </div>
       <div>
         <Card>
-          <CardBody className="p-8">
+          <CardBody className="p-6 lg:p-8">
             <h2 className="text-xl font-bold text-primary-500">
               Create Account
             </h2>
