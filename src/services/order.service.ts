@@ -6,6 +6,9 @@ const orderServices = {
   createOrder: (payload: ICart) => {
     return instance.post(`${endpoint.ORDER}`, payload);
   },
+  updateStatusPayment: (id: string, status: string) => {
+    return instance.put(`${endpoint.ORDER}/${id}/${status}`);
+  },
 };
 
 export default orderServices;
