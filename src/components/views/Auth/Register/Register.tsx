@@ -21,13 +21,13 @@ const Register = () => {
     <div className="flex w-full flex-col items-center justify-center gap-10 lg:flex-row lg:gap-20">
       <div className="flex w-full flex-col items-center justify-center gap-10 lg:w-1/3">
         <Image
-          src="/images/general/logo.svg"
+          src="/images/general/gofinance.png"
           alt="logo"
           width={180}
           height={180}
         />
         <Image
-          src="/images/illustration/login.svg"
+          src="/images/illustration/loginbear.png"
           alt="logo"
           className="w-2/3 lg:w-full"
           width={1024}

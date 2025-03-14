@@ -53,7 +53,7 @@ const LandingPageLayoutNavBar = () => {
       <div className="flex items-center gap-8">
         <NavbarBrand as={Link} href={"/"}>
           <Image
-            src={"/images/general/logo.svg"}
+            src={"/images/general/gofinance.png"}
             alt="logo"
             width={100}
             height={50}

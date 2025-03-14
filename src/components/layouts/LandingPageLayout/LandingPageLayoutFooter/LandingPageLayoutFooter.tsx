@@ -6,7 +6,7 @@ const LandingPageLayoutFooter = () => {
   return (
     <div className="flex flex-col justify-between bg-slate-900 px-6 py-10 text-center lg:flex-row lg:text-left xl:p-20">
       <Image
-        src={"/images/general/logo.svg"}
+        src={"/images/general/gofinance.png"}
         alt="logo"
         className="mb-4 w-40 lg:w-60"
         width={200}

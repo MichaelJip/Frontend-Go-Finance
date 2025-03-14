@@ -14,7 +14,7 @@ const Activation = (props: PropsTypes) => {
     <div className="flex w-screen flex-col items-center justify-center gap-10 p-4">
       <div className="flex flex-col items-center justify-center gap-10">
         <Image
-          src="/images/general/logo.svg"
+          src="/images/general/gofinance.png"
           alt="logo"
           width={180}
           height={180}
