@@ -34,7 +34,7 @@ const Transaction = () => {
             <DropdownAction
               keyText="transaction"
               onPressButtonDetail={() =>
-                push(`/member/transaction/${transaction._id}`)
+                push(`/member/transaction/${transaction.orderId}`)
               }
               hideButtonDelete={true}
             />

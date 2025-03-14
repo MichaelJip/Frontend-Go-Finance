@@ -137,7 +137,7 @@ const LandingPageLayoutNavBar = () => {
                 >
                   Admin
                 </DropdownItem>
-                <DropdownItem key="profile" href="/member/profile">
+                <DropdownItem key="profile" href="/member/dashboard">
                   Profile
                 </DropdownItem>
                 <DropdownItem key="signout" onPress={() => signOut()}>
@@ -198,7 +198,7 @@ const LandingPageLayoutNavBar = () => {
               </NavbarMenuItem>
               <NavbarMenuItem>
                 <Link
-                  href={"/member/profile"}
+                  href={"/member/dashboard"}
                   className={cn(
                     "font-medium text-default-700 hover:text-primary",
                   )}

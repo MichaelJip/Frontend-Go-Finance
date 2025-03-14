@@ -43,7 +43,7 @@ const Payment = () => {
           className="mt-4 w-fit"
           variant="bordered"
           color="primary"
-          onPress={() => router.push(`/member/transactions/${order_id}`)}
+          onPress={() => router.push(`/member/transaction/${order_id}`)}
         >
           Check your transactions here
         </Button>
