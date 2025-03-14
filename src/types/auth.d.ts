@@ -13,6 +13,16 @@ interface IActivation {
   code: string;
 }
 
+interface IProfile {
+  _id?: string;
+  email?: string;
+  fullName?: string;
+  isActive?: boolean;
+  role?: string;
+  username?: string;
+  profilePicture?: string | FileList;
+}
+
 interface ILogin {
   identifier: string;
   password: string;
@@ -35,6 +45,7 @@ export type {
   IRegister,
   IActivation,
   ILogin,
+  IProfile,
   JWTExtended,
   SessionExtended,
   UserExtended,

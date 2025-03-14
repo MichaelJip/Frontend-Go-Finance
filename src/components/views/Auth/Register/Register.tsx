@@ -67,7 +67,7 @@ const Register = () => {
                 render={({ field }) => (
                   <Input
                     {...field}
-                    label="Fullname"
+                    label="Full Name"
                     type="text"
                     variant="bordered"
                     placeholder="Bob Willbert"
