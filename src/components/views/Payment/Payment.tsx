@@ -27,8 +27,8 @@ const Payment = () => {
         <Image
           src={
             status === "success"
-              ? "/images/illustration/success.svg"
-              : "/images/illustration/pending.svg"
+              ? "/images/illustration/success-bear.png"
+              : "/images/illustration/pending-bear.png"
           }
           alt={"success"}
           width={300}

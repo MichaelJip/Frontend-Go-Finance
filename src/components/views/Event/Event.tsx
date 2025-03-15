@@ -44,10 +44,10 @@ const Event = () => {
           !isRefetchingEvent && (
             <div className="flex flex-col items-center justify-center gap-4 py-20">
               <Image
-                src="/images/illustration/no-data.svg"
+                src="/images/illustration/no-databear.png"
                 alt="no-data"
-                width={200}
-                height={200}
+                width={400}
+                height={400}
               />
               <h2 className="text-center text-2xl font-bold text-primary">
                 Event is empty
