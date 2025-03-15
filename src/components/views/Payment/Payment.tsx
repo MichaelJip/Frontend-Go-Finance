@@ -9,8 +9,6 @@ const Payment = () => {
   const { order_id, status } = router.query;
   const { mutateUpdateOrderStatus } = usePayment();
 
-  console.log(router.query, 'check query')
-
   useEffect(() => {
     if (router.isReady) {
       mutateUpdateOrderStatus();
