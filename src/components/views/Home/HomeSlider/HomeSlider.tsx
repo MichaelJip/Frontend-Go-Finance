@@ -30,17 +30,19 @@ const HomeSlider = (props: PropTypes) => {
             disableOnInteraction: false,
           }}
         >
-          {banners?.map((banner: IBanner) => (
-            <SwiperSlide key={banner._id} >
-              <Image
-                src={`${banner.image}`}
-                alt={`${banner.title}`}
-                className="h-[80%] w-full rounded-2xl object-cover lg:h-[90%]"
-                width={1920}
-                height={800}
-              />
-            </SwiperSlide>
-          ))}
+          {banners
+            ?.filter((banner: IBanner) => banner.isShow)
+            ?.map((banner: IBanner) => (
+              <SwiperSlide key={banner._id}>
+                <Image
+                  src={`${banner.image}`}
+                  alt={`${banner.title}`}
+                  className="h-[80%] w-full rounded-2xl object-cover lg:h-[90%]"
+                  width={1920}
+                  height={800}
+                />
+              </SwiperSlide>
+            ))}
         </Swiper>
       ) : (
         <Skeleton className="h-[90%] w-full rounded-2xl" />
