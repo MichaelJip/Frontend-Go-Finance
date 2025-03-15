@@ -18,12 +18,15 @@ const usePayment = () => {
         return status;
     }
   };
+
+  console.log(status, "check status payment");
+
   const updateTransactions = async () => {
     const result = await orderServices.updateStatusPayment(
       `${order_id}`,
       standardizeStatus(`${status}`),
     );
-
+    
     return result;
   };
 
